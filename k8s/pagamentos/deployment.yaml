@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pagamentos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pagamentos
+  template:
+    metadata:
+      labels:
+        app: pagamentos
+    spec:
+      containers:
+        - name: pagamentos
+          image: produtos-pagamentos:latest
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pagamentos-service
+spec:
+  selector:
+    app: pagamentos
+  ports:
+    - port: 3000
+      targetPort: 3000
