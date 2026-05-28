@@ -39,6 +39,5 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
-  },
-  "lint": "eslint src/**/*.ts"
+  }
 }
