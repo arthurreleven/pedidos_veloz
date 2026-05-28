@@ -32,7 +32,7 @@
   "exclude": [
     "node_modules"
   ],
-    "jest": {
+  "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
   }
