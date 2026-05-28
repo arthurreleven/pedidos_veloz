@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pedidos
-          image: produtos-pedidos:latest
+          image: produtos-pedidos:1.0.0
           ports:
             - containerPort: 3000
           env:
@@ -41,3 +41,8 @@ spec:
             httpGet:
               path: /health
               port: 3000
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true

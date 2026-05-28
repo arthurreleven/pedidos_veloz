@@ -36,6 +36,11 @@ spec:
       volumes:
         - name: postgres-data
           emptyDir: {}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
 ---
 apiVersion: v1
 kind: Service
