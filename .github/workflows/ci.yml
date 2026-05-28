@@ -18,17 +18,33 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependências - pedidos
-        run: cd pedidos && npm install
+      - name: Install e Test - pedidos
+        run: |
+          cd pedidos
+          npm install
+          npm test
 
-      - name: Install dependências - pagamentos
-        run: cd pagamentos && npm install
+      - name: Install e Test - pagamentos
+        run: |
+          cd pagamentos
+          npm install
+          npm test
 
-      - name: Install dependências - estoque
-        run: cd estoque && npm install
+      - name: Install e Test - estoque
+        run: |
+          cd estoque
+          npm install
+          npm test
 
-      - name: Install dependências - gateway
-        run: cd gateway && npm install
+      - name: Install e Test - gateway
+        run: |
+          cd gateway
+          npm install
+          npm test
 
       - name: Build Docker Compose
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
         run: docker compose build
