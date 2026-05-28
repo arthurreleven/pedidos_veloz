@@ -21,7 +21,7 @@ async function consume(retries = 10, delay = 3000) {
 
       console.log("Conectado ao RabbitMQ");
       return;
-    } catch (err) {
+    } catch {
       console.log(`RabbitMQ não disponível, tentando novamente... (${i + 1}/${retries})`);
       await new Promise((res) => setTimeout(res, delay));
     }

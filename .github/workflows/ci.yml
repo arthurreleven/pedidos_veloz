@@ -18,33 +18,49 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install e Test - pedidos
-        run: |
-          cd pedidos
-          npm install
-          npm test
+      - name: Lint - pedidos
+        run: cd pedidos && npm install && npm run lint
 
-      - name: Install e Test - pagamentos
-        run: |
-          cd pagamentos
-          npm install
-          npm test
+      - name: Lint - pagamentos
+        run: cd pagamentos && npm install && npm run lint
 
-      - name: Install e Test - estoque
-        run: |
-          cd estoque
-          npm install
-          npm test
+      - name: Lint - estoque
+        run: cd estoque && npm install && npm run lint
 
-      - name: Install e Test - gateway
-        run: |
-          cd gateway
-          npm install
-          npm test
+      - name: Lint - gateway
+        run: cd gateway && npm install && npm run lint
 
-      - name: Build Docker Compose
+      - name: Test - pedidos
+        run: cd pedidos && npm test
+
+      - name: Test - pagamentos
+        run: cd pagamentos && npm test
+
+      - name: Test - estoque
+        run: cd estoque && npm test
+
+      - name: Test - gateway
+        run: cd gateway && npm test
+
+      - name: Login no GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build e Push imagens
         env:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-        run: docker compose build
+        run: |
+          docker compose build
+          docker tag produtos_docker-pedidos:latest ghcr.io/arthurreleven/pedidos:1.0.0
+          docker tag produtos_docker-pagamentos:latest ghcr.io/arthurreleven/pagamentos:1.0.0
+          docker tag produtos_docker-estoque:latest ghcr.io/arthurreleven/estoque:1.0.0
+          docker tag produtos_docker-gateway:latest ghcr.io/arthurreleven/gateway:1.0.0
+          docker push ghcr.io/arthurreleven/pedidos:1.0.0
+          docker push ghcr.io/arthurreleven/pagamentos:1.0.0
+          docker push ghcr.io/arthurreleven/estoque:1.0.0
+          docker push ghcr.io/arthurreleven/gateway:1.0.0
