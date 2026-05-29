@@ -56,10 +56,10 @@ jobs:
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
         run: |
           docker compose build
-          docker tag produtos_docker-pedidos:latest ghcr.io/arthurreleven/pedidos:1.0.0
-          docker tag produtos_docker-pagamentos:latest ghcr.io/arthurreleven/pagamentos:1.0.0
-          docker tag produtos_docker-estoque:latest ghcr.io/arthurreleven/estoque:1.0.0
-          docker tag produtos_docker-gateway:latest ghcr.io/arthurreleven/gateway:1.0.0
+          docker tag pedidos-service:latest ghcr.io/arthurreleven/pedidos:1.0.0
+          docker tag pagamentos-service:latest ghcr.io/arthurreleven/pagamentos:1.0.0
+          docker tag estoque-service:latest ghcr.io/arthurreleven/estoque:1.0.0
+          docker tag gateway-service:latest ghcr.io/arthurreleven/gateway:1.0.0
           docker push ghcr.io/arthurreleven/pedidos:1.0.0
           docker push ghcr.io/arthurreleven/pagamentos:1.0.0
           docker push ghcr.io/arthurreleven/estoque:1.0.0
