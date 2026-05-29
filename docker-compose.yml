@@ -2,6 +2,7 @@ services:
 
   gateway:
     build: ./gateway
+    image: gateway:1.0.0
     container_name: gateway
     ports:
       - "3000:3000"
@@ -10,6 +11,7 @@ services:
 
   pedidos:
     build: ./pedidos
+    image: pedidos:1.0.0
     container_name: pedidos
 
     ports:
@@ -26,6 +28,7 @@ services:
 
   pagamentos:
     build: ./pagamentos
+    image: pagamentos:1.0.0
     container_name: pagamentos
     ports:
       - "3002:3000"
@@ -34,6 +37,7 @@ services:
 
   estoque:
     build: ./estoque
+    image: estoque:1.0.0
     container_name: estoque
     ports:
       - "3003:3000"
