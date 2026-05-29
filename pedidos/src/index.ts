@@ -5,7 +5,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import axios from "axios";
 
 const app = express();
-
+// alteração
 const connectionString = process.env.DATABASE_URL!;
 const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
