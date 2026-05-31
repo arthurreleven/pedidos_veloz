@@ -91,3 +91,5 @@ Pipeline automático via GitHub Actions a cada push na branch `main`:
 - Containers rodando com usuário não-root (`USER node`)
 - Credenciais via variáveis de ambiente
 - Secrets do Kubernetes para dados sensíveis
+
+Link Vídeo Pitch: https://youtu.be/2ElbTDgW1Oo
